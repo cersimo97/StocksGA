@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/stocksga/static/js/main.674c9ec7.js",
+    "static/js/787.d56f4055.chunk.js": "/stocksga/static/js/787.d56f4055.chunk.js",
+    "worker.js": "/stocksga/6a4b9bd260bdc0af6b2d.worker.js",
+    "index.html": "/stocksga/index.html",
+    "main.674c9ec7.js.map": "/stocksga/static/js/main.674c9ec7.js.map",
+    "787.d56f4055.chunk.js.map": "/stocksga/static/js/787.d56f4055.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.674c9ec7.js"
+  ]
+}
