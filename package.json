@@ -2,7 +2,7 @@
   "name": "stocksga",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://cersimo97.github.io/stocksga",
+  "homepage": "https://cersimo97.github.io/StocksGA",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
