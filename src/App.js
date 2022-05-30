@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useEffect, useState } from 'react'
-import { Line, LineChart, ResponsiveContainer } from 'recharts'
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
 import PST from './data/PST.json'
 import worker from 'workerize-loader!./gaWebWorker' // eslint-disable-line import/no-webpack-loader-syntax
@@ -42,13 +42,18 @@ function App() {
     setBest(null)
     setRes(null)
     setHoverDot(null)
-    const { best, data: d } = await instance.start({
-      data,
-    })
-    if (best) {
-      console.log(best)
-      setBest(best)
-      setRes(d)
+    try {
+      const { best, data: d } = await instance.start({
+        data,
+      })
+      if (best) {
+        console.log(best)
+        setBest(best)
+        setRes(d)
+        setIsRunning(false)
+      }
+    } catch (e) {
+      console.log(e)
       setIsRunning(false)
     }
   }
@@ -189,6 +194,7 @@ function App() {
                 dot={false}
                 isAnimationActive={false}
               />
+              <YAxis />
             </LineChart>
           </ResponsiveContainer>
         )}

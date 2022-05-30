@@ -8,7 +8,7 @@ class Chromosome {
     if (genes) {
       this.validate()
     }
-    this.track = []
+    this.track = this.genes.filter(g => g.action !== 'i')
   }
 
   validate() {
@@ -26,18 +26,8 @@ class Chromosome {
 
   generate() {
     function chooseNext(pa) {
-      let r = Math.random()
-      let max = 0
-      let choosen = null
-      let entries = Object.entries(pa)
-      let i = 0
-      while (i < entries.length && max < 1 && max < r) {
-        if (entries[i][1] >= max && entries[i][1] <= r) {
-          max = entries[i][1]
-          choosen = entries[i][0]
-        }
-        i++
-      }
+      let r = Math.floor(Math.random() * pa.length)
+      let choosen = pa[r]
       return choosen
     }
     let newGenes = []
@@ -64,8 +54,10 @@ class Chromosome {
       0
     )
     this.earnings = this.fitness
-    if (this.earnings < 0) this.fitness = 0
-    this.fitness = ((1 + this.fitness) ** -1) ** 2
+    if (this.earnings > 0) this.fitness *= 20
+    this.fitness /= this.genes.filter(g => g.action !== 'i').length * 20
+    // this.genes.filter(g => g.action !== 'i').length / this.genes.length +
+    // 1 / (1 + this.fitness) ** 2
     return this.fitness
   }
 

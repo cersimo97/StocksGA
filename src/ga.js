@@ -2,7 +2,7 @@ import Population from './population.js'
 
 class GA {
   constructor(history) {
-    this.population = new Population(100, 0.025, history)
+    this.population = new Population(100, 0.3, history)
     this.currentGeneration = 0
     this.fitnessHistory = []
   }
@@ -21,7 +21,7 @@ class GA {
 
   start() {
     return new Promise((resolve, reject) => {
-      while (this.currentGeneration < 100) {
+      while (this.currentGeneration < 1000) {
         this.population.calculateFitness()
         this.population.sortChromosomes()
         this.fitnessHistory.push({

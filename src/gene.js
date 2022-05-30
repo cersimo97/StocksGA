@@ -1,12 +1,12 @@
 const ACTIONS = ['b', 's', 'i']
 
 export function getPossilbeActions(lastAction, prevActions) {
-  if (!lastAction) return { b: 0.9, i: 0 }
+  if (!lastAction) return ['b', 'i']
   switch (lastAction) {
     case 'b':
-      return { s: 0.9, i: 0 }
+      return ['s', 'i']
     case 's':
-      return { b: 0.9, i: 0 }
+      return ['b', 'i']
     default:
       return prevActions
   }

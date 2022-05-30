@@ -26,18 +26,18 @@ class Population {
     let totalFitness = this.chromosomes
       .map(chromosome => chromosome.calculateFitness())
       .reduce((a, b) => a + b, 0)
-    this.chromosomes.forEach(chromosome => {
-      chromosome.fitness = chromosome.fitness / totalFitness
-    })
+    // this.chromosomes.forEach(chromosome => {
+    //   chromosome.fitness = chromosome.fitness / totalFitness
+    // })
     this.avgFitness = totalFitness / this.popSize
   }
 
   // Sort the chromosomes by fitness
   sortChromosomes() {
     let sortedChromosomes = this.chromosomes.sort(
-      (a, b) => a.fitness - b.fitness
+      (a, b) => b.fitness - a.fitness
     )
-    if (sortedChromosomes[0].fitness > sortedChromosomes[1].fitness) {
+    if (sortedChromosomes[0].fitness < sortedChromosomes[1].fitness) {
       throw new Error('Population is not sorted')
     }
     // let negativeChromosomes = sortedChromosomes.findIndex(
@@ -62,8 +62,8 @@ class Population {
 
   // Create a new population of chromosomes
   generateNewPopulation() {
-    let newPopulation = [this.bestChromosome]
-    for (let i = 0; i < this.popSize - 1; i++) {
+    let newPopulation = [...this.chromosomes.slice(0, 10)]
+    for (let i = 0; i < this.popSize - 10; i++) {
       let parentA = this.pickIndividual()
       let parentB = this.pickIndividual()
       let child = parentA.crossover(parentB)
